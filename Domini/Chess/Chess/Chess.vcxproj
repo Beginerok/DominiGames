@@ -78,7 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Users\Евгений\Desktop\Tropic-Island\Tropic-Island\Domini\Chess\Chess\lib;D:\git\Tropic-Island\Tropic-Island\Domini\Chess\Chess\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\Евгений\Desktop\Tropic-Island\Tropic-Island\Domini\Chess\Chess\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

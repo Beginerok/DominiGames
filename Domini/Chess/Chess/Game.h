@@ -11,7 +11,7 @@ struct chessai
 class Game
 {
 public:
-	SDL_Window*window;
+	SDL_Window *window;
 	SDL_Event event_;
 	WindowsSDLApi *WindowsSDLApi_;
 	Game();

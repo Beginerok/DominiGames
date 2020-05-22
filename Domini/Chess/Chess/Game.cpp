@@ -874,7 +874,6 @@ void Game::BeganActive()
 				{
 					if (Matrix[i][j] > 0 && Matrix[i][j] < 10 && firstplayer)
 					{
-						
 						std::cout << "first player walk " << firstplayer << " " << secondplayer << std::endl;
 					}
 					if (Matrix[i][j] > 9 && secondplayer)

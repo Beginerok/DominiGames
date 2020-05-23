@@ -45,6 +45,7 @@ public:
 	bool firstplayer, secondplayer,*ai;
 	int current, currentI, currentJ;
 	std::vector<chessai> Ai;
+	int aicountfirstrow, aicountsecondrow, aicountthirdrow; 
 	~Game();
 };
 

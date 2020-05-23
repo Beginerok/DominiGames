@@ -36,6 +36,9 @@ Game::Game()
 			Ai.push_back(tmp);
 		}
 	}
+	aicountfirstrow = 0;
+	aicountsecondrow = 0;
+	aicountthirdrow = 0;
 }
 void Game::setup_opengl(int width, int height)
 {
@@ -202,10 +205,30 @@ bool Game::Move_UpAI(int i,int j)
 {
 	if (i != 0 && Matrix[i - 1][j] == 0)
 	{
+		if (i - 1 == 0 && aicountfirstrow > 2)
+			return false;
+		if (i - 1 == 1 && aicountsecondrow > 2)
+			return false;
+		if (i - 1 == 2 && aicountthirdrow > 2)
+			return false;
 		Matrix[i - 1][j] = Matrix[i][j];
 		ChessY[Matrix[i][j] - 1] += 0.2;
 		Matrix[i][j] = 0;
 		std::cout << "MoveUp AI" << std::endl;
+		switch (i - 1)
+		{
+		case 0:
+			aicountfirstrow++;
+			aicountsecondrow--;
+			break;
+		case 1:
+			aicountsecondrow++;
+			aicountthirdrow--;
+			break;
+		case 2:
+			aicountthirdrow++;
+			break;
+		}
 		return true;
 	}
 	else
@@ -219,6 +242,20 @@ bool Game::Move_DownAI(int i, int j)
 		ChessY[Matrix[i][j] - 1] -= 0.2;
 		Matrix[i][j] = 0;
 		std::cout << "MoveDown AI"<< std::endl;
+		switch (i)
+		{
+		case 0:
+			aicountfirstrow--;
+			aicountsecondrow++;
+			break;
+		case 1:
+			aicountsecondrow--;
+			aicountthirdrow++;
+			break;
+		case 2:
+			aicountthirdrow--;
+			break;
+		}
 		return true;
 	}
 	else
@@ -265,6 +302,12 @@ POINT Game::FindMatrix(int value)
 bool Game::Check_MoveUp(int value)
 {
 	POINT p = FindMatrix(value);
+	if (p.x - 1 == 0 && aicountfirstrow > 2)
+		return false;
+	if (p.x - 1 == 1 && aicountsecondrow > 2)
+		return false;
+	if (p.x - 1 == 2 && aicountthirdrow > 2)
+		return false;
 	if (p.x != 0 && Matrix[p.x-1][p.y] == 0)
 		return true;
 	else
@@ -894,7 +937,6 @@ void Game::BeganActive()
 			}
 		}
 }
-
 void Game::draw_screen()
 {
 	while (run)
